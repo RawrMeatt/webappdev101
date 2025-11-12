@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Cat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .space-background {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to bottom, #000000, #1a0033, #000428);
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            z-index: 10;
+        }
+
+        .cat {
+            font-size: 150px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-5deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .text {
+            margin-top: 30px;
+            color: white;
+            font-size: 32px;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                         0 0 20px rgba(100, 200, 255, 0.6);
+            animation: glow 2s ease-in-out infinite;
+            font-weight: bold;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
+            50% { text-shadow: 0 0 20px rgba(255, 255, 255, 1),
+                              0 0 30px rgba(100, 200, 255, 0.8); }
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .planet1 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            top: 15%;
+            left: 10%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .planet2 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            bottom: 20%;
+            right: 15%;
+            animation: rotate 30s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="space-background">
+        <div class="stars" id="stars"></div>
+        <div class="planet planet1"></div>
+        <div class="planet planet2"></div>
+    </div>
+
+    <div class="container">
+        <div class="cat">🐱</div>
+        <div class="text">สวัสดี ฉันชื่อ THANAPHAT SEETHA</div>
+    </div>
+
+    <script>
+        // สร้างดาวในอวกาศ
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
